@@ -1,62 +1,29 @@
-# Tu tarea es descubrir el número en la fila x y la columna y.
-# Input:
-# El primer parámetro contiene la posición de la fila de la matriz espiral
-# El segundo parámetro contiene la posición de la columna de la matriz espiral
-# Output:
-# Retornar el valor de la matriz en la posición seleccionada.
-
 def encontrar_valor(matriz, fila, columna):
+    #buscamos el valor del numero en esa fila y columna de la matriz, si no encuentra nada retorna none
     if fila < 1 or fila > len(matriz) or columna < 1 or columna > len(matriz[0]):
         return None  
     else:
         return matriz[fila - 1][columna - 1]
 
-def longitud_array():
-    n = 25  
-    lado = int(n ** 0.5) + 1 if (n ** 0.5) % 1 != 0 else int(n ** 0.5)
-    print("lado:", lado)
+def number_spiral(fila, columna):
+    #diseñamos nuestra matriz
+    matriz = [
+        [1, 2, 9, 10, 25],
+        [4, 3, 8, 11, 24],
+        [5, 6, 7, 12, 23],
+        [16, 15, 14, 13, 22],
+        [17, 18, 19, 20, 21]
+    ]
+    #llamamos a la funcion encontrar valor y la pasamos matriz, fila y columna
+    valor_encontrado = encontrar_valor(matriz, fila, columna)
 
-    arrays = []
-    for i in range(1, n + 1):
-        if i%2==0:
-            arrays.append(i)
-        else:
-            arrays.append(i)
-
-    matriz = [arrays[i * lado : (i + 1) * lado] for i in range(lado)]
-    reordenar_matriz_espiral(matriz)
-
-
-def reordenar_matriz_espiral(matriz):
-    for i, fila in enumerate(matriz, start=1):
-        print("Fila:", i)
-        for j, elemento in enumerate(fila, start=1):
-            if elemento == 3:
-                i += 1  
-                print(f"P ({i}, {j}): {elemento}", end=" ")
-                break  
-            print(f"P ({i}, {j}): {elemento}", end=" ")
-        print()
-    valor_buscado(matriz)
-
-
-def valor_buscado(matriz):
-    fila_buscar = 2
-    columna_buscar = 1
-
-    valor_encontrado = encontrar_valor(matriz, fila_buscar, columna_buscar)
-
+    #Hacemos un estructura condicional, si encuentra el valor imprime y si no, fila y columna fuera de rango 
     if valor_encontrado is not None:
-        print(f"El valor en la fila {fila_buscar} y columna {columna_buscar} es: {valor_encontrado}")
-        diseño_array(matriz)
+        print(f"El valor en la fila {fila} y columna {columna} es: {valor_encontrado}")
     else:
         print("La fila o columna especificada está fuera de rango.")
 
-def diseño_array(matriz):
-     print("Diseño de la matriz: ")
-     for fila in matriz:
-        for elemento in fila:
-                print(elemento, end=" ")
-        print()  
+    return valor_encontrado
 
-longitud_array()
+#caso de prueba y llamamos a la funcion pasando fila y columna
+assert number_spiral(2, 2) == 3, "Error en el caso de prueba"
