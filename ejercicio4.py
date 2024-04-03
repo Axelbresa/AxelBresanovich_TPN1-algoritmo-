@@ -41,7 +41,7 @@ def reorganizar_palindromo(cadena):
 # Verificar con assert
 assert reorganizar_palindromo("") == "RANGO INVÁLIDO", "Error en el caso de prueba"
 assert reorganizar_palindromo("aabbc") == "abcba", "Error en el caso de prueba"
-assert reorganizar_palindromo("baa") == "aba", "Error en el caso de prueba"
+assert reorganizar_palindromo("oos") == "oso", "Error en el caso de prueba"
 assert reorganizar_palindromo("baae") == "NO SOLUTION", "Error en el caso de prueba"
 assert reorganizar_palindromo("OSO") == "CARACTERES INVÁLIDOS", "Error en el caso de prueba"
 assert reorganizar_palindromo("ñoñ") == "CARACTERES INVÁLIDOS", "Error en el caso de prueba"

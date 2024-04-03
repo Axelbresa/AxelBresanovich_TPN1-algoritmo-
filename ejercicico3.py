@@ -22,8 +22,15 @@ def number_spiral(fila, columna):
         print(f"El valor en la fila {fila} y columna {columna} es: {valor_encontrado}")
     else:
         print("La fila o columna especificada está fuera de rango.")
+        return "fuera de rango"
 
     return valor_encontrado
 
 #caso de prueba y llamamos a la funcion pasando fila y columna
 assert number_spiral(2, 2) == 3, "Error en el caso de prueba"
+assert number_spiral(4, 2) == 15, "Error en el caso de prueba"
+assert number_spiral(3, 5) == 23, "Error en el caso de prueba"
+assert number_spiral(5, 5) == 21, "Error en el caso de prueba"
+assert number_spiral(6, 5) == "fuera de rango", "Error en el caso de prueba"
+
+
