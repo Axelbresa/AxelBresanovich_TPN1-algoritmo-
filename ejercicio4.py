@@ -1,6 +1,14 @@
 def reorganizar_palindromo(cadena):
+    # Creamos un rango de n si es invalido imprimara un mensaje del error si es valido seguira la secuencia
     if not 1 <= len(cadena) <= 1000000:
+        print("RANGO INVÁLIDO")
         return "RANGO INVÁLIDO"
+
+# Verificar que la cadena solo contenga letras minúsculas del alfabeto inglés
+    for caracter in cadena:
+        if not 'a' <= caracter <= 'z':
+            print("CARACTERES INVÁLIDOS")
+            return "CARACTERES INVÁLIDOS"
 
     # Contador de caracteres
     contador_caracteres = {}
@@ -17,7 +25,8 @@ def reorganizar_palindromo(cadena):
     
     # Si hay más de un carácter con conteo impar, no es posible formar un palíndromo
     if conteo_impar > 1:
-        return "NO SE PUEDE FORMAR UN PALÍNDROMO"
+        print("NO SOLUTION")
+        return "NO SOLUTION"
     
     # Construir la mitad del palíndromo
     mitad_palindromo = ''
@@ -33,5 +42,8 @@ def reorganizar_palindromo(cadena):
 assert reorganizar_palindromo("") == "RANGO INVÁLIDO", "Error en el caso de prueba"
 assert reorganizar_palindromo("aabbc") == "abcba", "Error en el caso de prueba"
 assert reorganizar_palindromo("baa") == "aba", "Error en el caso de prueba"
-assert reorganizar_palindromo("baae") == "baae", "Error en el caso de prueba"
+assert reorganizar_palindromo("baae") == "NO SOLUTION", "Error en el caso de prueba"
+assert reorganizar_palindromo("OSO") == "CARACTERES INVÁLIDOS", "Error en el caso de prueba"
+assert reorganizar_palindromo("ñoñ") == "CARACTERES INVÁLIDOS", "Error en el caso de prueba"
+
 
