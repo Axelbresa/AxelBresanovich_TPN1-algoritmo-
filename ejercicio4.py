@@ -1,27 +1,37 @@
-# Dada una cadena de caracteres, tu tarea es reorganizar los caracteres de la cadena de manera
-# que puedas formar un palíndromo. Si no es posible formar un palíndromo, debes indicarlo.
-# Input:
-# El único parámetro contiene una cadena de caracteres de longitud n ( 1 ≤ n ≤ 10^6 ). La
-# cadena solo contiene letras minúsculas del alfabeto inglés.
-# Output:
-# Retorna una cadena que represente un palíndromo formado reorganizando los caracteres de la
-# cadena de entrada. Si no es posible formar un palíndromo, retorna "NO SOLUTION".
+def reorganizar_palindromo(cadena):
+    if not 1 <= len(cadena) <= 1000000:
+        return "RANGO INVÁLIDO"
 
-def invertir_palabra(palabra):
-    palabra_inversa = ""    
-    for i in palabra[::-1]:
-        palabra_inversa += i
-        polindromo(palabra_inversa, palabra)
+    # Contador de caracteres
+    contador_caracteres = {}
+    for caracter in cadena:
+        contador_caracteres[caracter] = contador_caracteres.get(caracter, 0) + 1
+    
+    # Contador de caracteres con conteo impar
+    conteo_impar = 0
+    caracter_impar = ''
+    for caracter, conteo in contador_caracteres.items():
+        if conteo % 2 != 0:
+            conteo_impar += 1
+            caracter_impar = caracter
+    
+    # Si hay más de un carácter con conteo impar, no es posible formar un palíndromo
+    if conteo_impar > 1:
+        return "NO SE PUEDE FORMAR UN PALÍNDROMO"
+    
+    # Construir la mitad del palíndromo
+    mitad_palindromo = ''
+    for caracter, conteo in contador_caracteres.items():
+        mitad_palindromo += caracter * (conteo // 2)
+    
+    # Armar el palíndromo completo
+    palindromo = mitad_palindromo + caracter_impar + mitad_palindromo[::-1]
+    print("palindromo:", palindromo)
+    return palindromo
 
-def polindromo(palabra_inversa, palabra):
-    print("palabra a la inversa", palabra_inversa)
-    if palabra_inversa==palabra:
-        print("Es un polindromo: ", palabra_inversa)
-    else:
-        print("No es un polindromo")
-
-assert invertir_palabra("aabbc") == "abcba", "Error en el caso de prueba"
-
-
-
+# Verificar con assert
+assert reorganizar_palindromo("") == "RANGO INVÁLIDO", "Error en el caso de prueba"
+assert reorganizar_palindromo("aabbc") == "abcba", "Error en el caso de prueba"
+assert reorganizar_palindromo("baa") == "aba", "Error en el caso de prueba"
+assert reorganizar_palindromo("baae") == "baae", "Error en el caso de prueba"
 
